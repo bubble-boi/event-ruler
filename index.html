@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#090b0d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Event Ruler">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('event-ruler-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch{document.documentElement.dataset.theme='dark'}</script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Event Ruler</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span>EVENT RULER</span></div>
+      <div class="top-actions">
+        <button id="themeButton" class="theme-button" type="button" aria-label="ライトモードに切替">☀</button>
+        <button id="menuButton" class="icon-button" aria-label="データメニュー" aria-expanded="false">•••</button>
+      </div>
+      <div id="dataMenu" class="data-menu" hidden>
+        <button data-action="export-json">JSONを書き出す</button>
+        <button data-action="import-json">JSONを読み込む</button>
+        <button data-action="export-csv">CSVを書き出す</button>
+        <button data-action="delete-all" class="danger">全記録を削除</button>
+      </div>
+      <input id="importInput" type="file" accept="application/json,.json" hidden>
+    </header>
+
+    <main>
+      <section class="composer" aria-label="イベントを記録">
+        <label class="text-field">
+          <span>EVENT</span>
+          <input id="eventText" type="text" maxlength="120" autocomplete="off" enterkeyhint="done" placeholder="何を記録しますか？">
+        </label>
+        <button id="recordButton" class="record-button"><span class="record-symbol"></span><span>記録</span><small id="recordClock">--:--:--</small></button>
+      </section>
+
+      <section class="count-section" aria-label="色別の記録数">
+        <div class="count-heading"><span>COLOR COUNT</span><strong id="totalCount">0</strong></div>
+        <div id="colorCounts" class="color-counts"></div>
+        <label class="custom-color" aria-label="任意の色">
+          <input id="customColor" type="color" value="#75f0c2">
+          <span>＋</span>
+        </label>
+      </section>
+
+      <section class="timeline-section" aria-label="タイムルーラー">
+        <div class="timeline-head">
+          <div><span class="eyebrow">TIMELINE</span><strong id="viewDate">----</strong></div>
+        </div>
+        <div id="ruler" class="ruler" aria-label="左右にスワイプできる時間軸">
+          <div id="rulerTrack" class="ruler-track">
+            <div id="ticks" class="ticks"></div>
+            <div id="markers" class="markers"></div>
+            <div id="nowLine" class="now-line" aria-hidden="true"><span>NOW</span></div>
+          </div>
+        </div>
+        <div class="playhead-line" aria-hidden="true"></div>
+        <div class="center-notch" aria-hidden="true"></div>
+        <button id="playheadReadout" class="playhead-readout" type="button" aria-hidden="true">
+          <span id="playheadSwatch"></span><strong id="playheadText"></strong><time id="playheadTime"></time>
+        </button>
+        <div class="gesture-hint">SWIPE · DOUBLE TAP FOR NOW · PINCH</div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <form method="dialog" class="detail-sheet">
+      <div class="sheet-handle"></div>
+      <div class="detail-heading"><span id="detailSwatch"></span><span>EVENT DETAIL</span><button value="cancel" aria-label="閉じる">×</button></div>
+      <label>内容<input id="detailText" maxlength="120"></label>
+      <div class="detail-meta"><span id="detailDate"></span><strong id="detailTime"></strong></div>
+      <label class="detail-color">マーカー色<input id="detailColor" type="color"></label>
+      <div class="detail-actions"><button id="deleteButton" type="button" class="delete-button">削除</button><button id="saveButton" type="button" class="save-button">変更を保存</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="undoBar" class="undo-bar" hidden><span>記録を削除しました</span><button id="undoButton">元に戻す</button></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

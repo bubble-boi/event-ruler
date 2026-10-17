@@ -1,0 +1,16 @@
+{
+  "name": "Event Ruler — イベント記録",
+  "short_name": "Event Ruler",
+  "description": "時刻と色で、できごとを素早く記録するオフラインPWA",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090b0d",
+  "theme_color": "#090b0d",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

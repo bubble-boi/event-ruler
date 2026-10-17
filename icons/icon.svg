@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Event Ruler neon orb">
+  <!-- Vector counterpart of icon.html: all gradients and glows are code. -->
+  <defs>
+    <radialGradient id="orb" cx="38%" cy="38%" r="73%" fx="38%" fy="38%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".25" stop-color="#a5f6da"/>
+      <stop offset=".55" stop-color="#75f0c2"/>
+      <stop offset=".90" stop-color="#3c5b66"/>
+      <stop offset="1" stop-color="#1e0b36"/>
+    </radialGradient>
+    <radialGradient id="inner" cx="30%" cy="26%" r="75%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".72"/>
+      <stop offset=".37" stop-color="#75f0c2" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#1e0b36" stop-opacity=".13"/>
+    </radialGradient>
+    <filter id="glowWide" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <filter id="glowNear" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="reflectionBlur" x="-50%" y="-80%" width="200%" height="260%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <circle cx="256" cy="256" r="157" fill="#75f0c2" opacity=".48" filter="url(#glowWide)"/>
+  <circle cx="256" cy="256" r="157" fill="#75f0c2" opacity=".50" filter="url(#glowNear)"/>
+  <circle cx="256" cy="256" r="156" fill="url(#orb)"/>
+  <circle cx="256" cy="256" r="156" fill="url(#inner)" opacity=".32"/>
+  <circle cx="256" cy="256" r="155" fill="none" stroke="#c8ffeb" stroke-opacity=".7" stroke-width="2"/>
+  <ellipse cx="211" cy="189" rx="40" ry="18" transform="rotate(-35 211 189)" fill="#ffffff" fill-opacity=".95" filter="url(#reflectionBlur)"/>
+</svg>
